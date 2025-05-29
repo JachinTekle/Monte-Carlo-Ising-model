@@ -108,3 +108,9 @@ if st.button("Simulation starten"):
 
     with open(gif_path, "rb") as f:
         st.download_button("📥 GIF herunterladen", f, file_name="ising_animation.gif", mime="image/gif")
+
+
+with st.expander("ℹ️ Theorie", expanded=False):
+    with open("README.md", "r", encoding="utf-8") as f:
+        st.markdown(f.read())
+        
