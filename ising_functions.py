@@ -1,4 +1,8 @@
+from numba import jit, cuda
 import numpy as np
+@jit(nopython=True, parallel=True, cache=True)
+
+
 
 def initialize_lattice(N, m0):
     num_up = int((1 + m0) / 2 * N * N)
@@ -6,6 +10,7 @@ def initialize_lattice(N, m0):
     np.random.shuffle(lattice)
     return lattice.reshape((N, N))
 
+@jit(nopython=True, parallel=True, cache=True)
 def compute_energy(lattice):
     energy = 0
     N = lattice.shape[0]
@@ -20,15 +25,18 @@ def compute_energy(lattice):
 def compute_magnetization(lattice):
     return np.sum(lattice)
 
+@jit(nopython=True, parallel=True, cache=True)
 def metropolis_step(lattice, T):
     N = lattice.shape[0]
-    for _ in range(N * N):
-        i, j = np.random.randint(0, N, size=2)
+    random_indices = np.random.randint(0, N, size=(N * N, 2))
+    random_probs = np.random.rand(N * N)
+    for idx in range(N * N):
+        i, j = random_indices[idx]
         S = lattice[i, j]
         neighbors = (lattice[(i+1)%N, j] + lattice[i, (j+1)%N] +
                      lattice[i-1, j] + lattice[i, j-1])
         dE = 2 * S * neighbors
-        if dE < 0 or np.random.rand() < np.exp(-dE / T):
+        if dE < 0 or random_probs[idx] < np.exp(-dE / T):
             lattice[i, j] *= -1
     return lattice
 
@@ -77,3 +85,8 @@ def simulate_thermo(N, m0, T_values, steps):
         Cs.append(C)
         chis.append(chi)
     return Cs, chis
+
+@cuda.jit
+def metropolis_step_gpu(lattice, T, random_indices, random_probs):
+    # GPU implementation of metropolis_step
+    pass

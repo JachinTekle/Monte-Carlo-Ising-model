@@ -1,7 +1,7 @@
 import streamlit as st
 import numpy as np
 import matplotlib.pyplot as plt
-import imageio.v2 as imageio
+import imageio
 from io import BytesIO
 import os
 
@@ -23,9 +23,9 @@ col1, col2, col3, col4 = st.columns(4)
 with col1:
     use_slider_N = st.checkbox("Slider für Gittergröße", value=True)
     if use_slider_N:
-        N = st.slider("Gittergröße (N x N)", 10, 100, 50)
+        N = st.slider("Gittergröße (N x N)", 10, 250, 50)
     else:
-        N = st.number_input("Gittergröße (N x N)", min_value=10, max_value=100, value=50)
+        N = st.number_input("Gittergröße (N x N)", min_value=10, max_value=250, value=50)
 with col2:
     use_slider_T = st.checkbox("Slider für Temperatur", value=True)
     if use_slider_T:
@@ -35,9 +35,9 @@ with col2:
 with col3:
     use_slider_steps = st.checkbox("Slider für Zeitschritte", value=True)
     if use_slider_steps:
-        steps = st.slider("Anzahl Zeitschritte", 10, 500, 100)
+        steps = st.slider("Anzahl Zeitschritte", 10, 1000, 100)
     else:
-        steps = st.number_input("Anzahl Zeitschritte", min_value=10, max_value=500, value=100)
+        steps = st.number_input("Anzahl Zeitschritte", min_value=10, max_value=1000, value=100)
 with col4:
     use_slider_m0 = st.checkbox("Slider für Magnetisierung", value=True)
     if use_slider_m0:
