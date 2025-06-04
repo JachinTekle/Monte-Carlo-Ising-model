@@ -15,7 +15,11 @@ from ising_functions import (initialize_lattice, compute_energy, compute_magneti
 
 t_c = 2 / np.log(1 + np.sqrt(2))  # Critical temperature for the Ising model
 
+
 st.set_page_config(layout="wide")
+
+
+
 st.title("Interactive Monte Carlo Ising Model")
 
 # Funktion zum Überprüfen und Laden von Bildern
