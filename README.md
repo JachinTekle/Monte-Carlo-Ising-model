@@ -1,5 +1,5 @@
 # Monte-Carlo-Ising-Model
-The Ising model is a cornerstone of statistical mechanics, providing a simple yet powerful framework to study phase transitions in systems with many interacting components. This repository guides you through Monte Carlo methods and their application to the Ising model. You can find the full code [here](https://github.com/JachinTekle/Monte-Carlo-Ising-model)
+The Ising model is a cornerstone of statistical mechanics, providing a simple yet powerful framework to study phase transitions in systems with many interacting components. This repository guides you through Monte Carlo methods and their application to the Ising model. You can find the full code [here](https://github.com/JachinTekle/Monte Carlo Ising Model)
 
 ## Markov-Chain Monte Carlo (MCMC)
 

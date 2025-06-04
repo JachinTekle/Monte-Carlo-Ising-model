@@ -1,9 +1,7 @@
 import streamlit as st
 import numpy as np
 import matplotlib.pyplot as plt
-import imageio
 import imageio_ffmpeg
-from io import BytesIO
 import os
 import plotly.graph_objects as go
 from matplotlib.animation import FuncAnimation
@@ -38,7 +36,7 @@ with st.expander("Theory of the Ising Model", expanded=True):
         st.markdown(f.read())
 
 # Parameter Section
-st.subheader("Adjust Parameters")
+st.subheader("Interactive Parameters")
 col1, col2, col3, col4 = st.columns(4)
 with col1:
     use_slider_N = st.checkbox("Use slider for grid size", value=True)
