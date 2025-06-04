@@ -1,11 +1,8 @@
 import streamlit as st
 import numpy as np
 import matplotlib.pyplot as plt
-import imageio_ffmpeg
 import os
 import plotly.graph_objects as go
-from matplotlib.animation import FuncAnimation
-from IPython.display import HTML
 
 # Import functions from the separate file
 from ising_functions import (initialize_lattice, compute_energy, compute_magnetization,
@@ -17,17 +14,6 @@ t_c = 2 / np.log(1 + np.sqrt(2))  # Critical temperature for the Ising model
 st.set_page_config(layout="wide")
 
 
-
-st.title("Interactive Monte Carlo Ising Model")
-
-# Funktion zum Überprüfen und Laden von Bildern
-def load_image(image_path):
-    """Lädt ein Bild wenn es existiert, sonst gibt None zurück"""
-    if os.path.exists(image_path):
-        return st.image(image_path, use_column_width=True)
-    else:
-        st.warning(f"Bild nicht gefunden: {image_path}")
-        return Nonez
 
 # Theory Section
 with st.expander("Theory of the Ising Model", expanded=True):
@@ -92,38 +78,15 @@ if start_button:
         ax_m.legend()
         st.pyplot(fig_m)
 
-    # Animation of spins
-    st.subheader("Spin Animation")
-    col_gif = st.columns(1)[0]
-    with col_gif:
-        fig, ax = plt.subplots()
-        im = ax.imshow(snapshots[0], cmap="seismic", vmin=-1, vmax=1)
-        ax.axis("off")
-
-        def update(frame):
-            im.set_array(snapshots[frame])
-            return [im]
-
-        ani = FuncAnimation(fig, update, frames=range(0, len(snapshots), 2), interval=200, blit=True)
-
-        # Save as HTML5
-        html_animation = ani.to_html5_video()
-
-        # Display in Streamlit
-        st.components.v1.html(html_animation, height=500)
-
-    # Additional visualizations:
-    # 1. Spin configurations
+    # Spin configurations snapshots
     st.subheader("Spin Configurations")
-    n_snap = min(4, len(snapshots))
-    cols_sc = st.columns(n_snap)
+    n_snap = 6  # Anzahl der Snapshots
+    cols_sc = st.columns(3)  # 2 Reihen mit je 3 Snapshots
     for i in range(n_snap):
         idx = int(i * len(snapshots) / n_snap)
-        with cols_sc[i]:
-            fig, ax = plt.subplots()
+        with cols_sc[i % 3]:
+            fig, ax = plt.subplots(figsize=(4, 4))
             ax.imshow(snapshots[idx], cmap="seismic", vmin=-1, vmax=1)
-            ax.set_title(f"Snapshot {idx}")
+            ax.set_title(f"Step {idx}")
             ax.axis("off")
             st.pyplot(fig)
-
-imageio_ffmpeg.get_ffmpeg_version()  # Ensure ffmpeg is available
