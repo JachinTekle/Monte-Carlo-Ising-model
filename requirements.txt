@@ -1,5 +1,9 @@
-streamlit
-numpy
-matplotlib
-numba
-imageio
+streamlit>=1.24.0
+numpy>=1.24.0
+matplotlib>=3.7.0
+numba>=0.57.0
+imageio>=2.31.0
+imageio-ffmpeg>=0.4.8
+plotly>=5.15.0
+scipy>=1.10.0
+ipython>=8.14.0
