@@ -38,7 +38,7 @@ $$
 - $\sum_{\langle i,j \rangle} \sigma_i \sigma_j$ being the sum over all neighboring spins
 - $J$ being the coupling constant between the spins
 
-![2D Ising Model Illustration](Visualisations/drawingising.jpg)
+<img src="Visualisations/drawingising.jpg" width="400" alt="2D Ising Model Illustration"/>
 
 By studying the Ising model, especially in two dimensions, one can gain insight into phase transitions and critical phenomena, such as the abrupt loss of magnetization at a certain critical temperature.
 
