@@ -90,3 +90,5 @@ if start_button:
             ax.set_title(f"Step {idx}")
             ax.axis("off")
             st.pyplot(fig)
+
+
