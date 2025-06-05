@@ -27,9 +27,9 @@ col1, col2, col3, col4 = st.columns(4)
 with col1:
     use_slider_N = st.checkbox("Use slider for grid size", value=True)
     if use_slider_N:
-        N = st.slider("Grid size (N x N)", 10, 1000, 100)
+        N = st.slider("Grid size (N x N)", 10, 500, 100)
     else:
-        N = st.number_input("Grid size (N x N)", min_value=10, max_value=1000, value=50)
+        N = st.number_input("Grid size (N x N)", min_value=10, max_value=500, value=50)
 with col2:
     use_slider_T = st.checkbox("Use slider for temperature", value=True)
     t_c = 2 / np.log(1 + np.sqrt(2))  # Critical temperature
@@ -40,9 +40,9 @@ with col2:
 with col3:
     use_slider_steps = st.checkbox("Use slider for time steps", value=True)
     if use_slider_steps:
-        steps = st.slider("Number of time steps", 10, 1000, 100)
+        steps = st.slider("Number of time steps", 10, 500, 100)
     else:
-        steps = st.number_input("Number of time steps", min_value=10, max_value=1000, value=100)
+        steps = st.number_input("Number of time steps", min_value=10, max_value=500, value=100)
 with col4:
     use_slider_m0 = st.checkbox("Use slider for magnetization", value=True)
     if use_slider_m0:
